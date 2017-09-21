@@ -9,6 +9,7 @@ $(function(){
 
 	$('#user_name').blur(function() {
 		check_user_name();
+		user_name_vrify();
 	});
 
 	$('#pwd').blur(function() {
@@ -37,6 +38,11 @@ $(function(){
 		}
 	});
 
+	function user_name_vrify() {
+		$.get('/usr/vrify/',function (data) {
+			
+        })
+    }
 
 	function check_user_name(){
 		var len = $('#user_name').val().length;
@@ -105,7 +111,7 @@ $(function(){
 	}
 
 
-	$('.reg_form').submit(function() {
+	$('#reg_form').submit(function() {
 		check_user_name();
 		check_pwd();
 		check_cpwd();

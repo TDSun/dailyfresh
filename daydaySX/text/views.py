@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from text.models import Passport
 
 import templates
 # Create your views here.
@@ -14,8 +15,10 @@ def register(request):
     return render(request,'text/register.html')
 
 def register_verify(request):
+    str = request.POST.get('pwd')
 
-    return redirect('/login/')
+    Passport.objects.add_one_passport(username=request.POST.get('user_name'),password=request.POST.get('pwd'),email=request.POST.get('email'))
+    return redirect('/use/login/')
 
 def cart(request):
     return render(request,'text/cart.html')

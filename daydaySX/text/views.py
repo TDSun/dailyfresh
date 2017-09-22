@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from text.models import *
 from django.http import HttpResponse,JsonResponse
-
+from django.conf import settings
+from django.core.mail import send_mail
 import templates
+from text import tasks
 # Create your views here.
 
 # 首页
@@ -19,19 +21,13 @@ def register(request):
 
 # 注册校验
 def register_verify(request):
-    print(request.POST.get('pwd'))
-
-    Passport.objects.add_one_passport(username=request.POST.get('user_name'),password=request.POST.get('pwd'),email=request.POST.get('email'))
+    Passport.objects.add_one_passport(request.POST.get('user_name'),request.POST.get('pwd'),request.POST.get('email'))
+    tasks.my_send_email('欢迎信息','',settings.EMAIL_FROM,[request.POST.get('email')],'<h1>你好我是TDSun</h1>')
     return redirect('/use/login/')
 
 # 用户名校验
 def verify_username(request,name):
-
-    try:
-        Passport.objects.get(username=name)
-        user = 'no'
-    except Exception:
-        user = 'yes'
+    user = Passport.objects.verify_username(name)
     return JsonResponse({'user':user})
 
 #购物车

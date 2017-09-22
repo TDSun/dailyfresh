@@ -9,6 +9,14 @@ class PassportManager(models.Manager):
         passport.save()
         return passport
 
+    def verify_username(self,name):
+        try:
+            Passport.objects.get(username=name)
+            return 'no'
+        except Exception:
+            return 'yes'
+
+
 
 class Passport(BaseModle):
     username = models.CharField(max_length=20,null=False,verbose_name='用户名')

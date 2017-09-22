@@ -9,6 +9,7 @@ $(function(){
 
 	$('#user_name').blur(function() {
 		check_user_name();
+		username_exist(true)
 	});
 
 	$('#pwd').blur(function() {
@@ -47,7 +48,15 @@ $(function(){
 		}
 		else
 		{
-            $.get('/use/verify/'+$('#user_name').val()+'/',function (data) {
+			$('#user_name').next().hide();
+			error_name = false;
+		}
+	}
+	function username_exist(async) {
+		$.ajax({
+			'url':'/use/verify/'+$('#user_name').val()+'/',
+			'async':async,
+			'success':function (data) {
                 if (data.user == 'no') {
                     $('#user_name').next().html('用户名已存在')
                     $('#user_name').next().show();
@@ -57,11 +66,9 @@ $(function(){
                     $('#user_name').next().hide();
                     error_name = false;
                 }
-            })
-			$('#user_name').next().hide();
-			error_name = false;
-		}
-	}
+            }
+		})
+    }
 
 	function check_pwd(){
 		var len = $('#pwd').val().length;
@@ -114,9 +121,9 @@ $(function(){
 
 	}
 
-
 	$('#reg_form').submit(function() {
 		check_user_name();
+		username_exist(false)
 		check_pwd();
 		check_cpwd();
 		check_email();

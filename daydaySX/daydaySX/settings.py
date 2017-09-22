@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'text'
+    'djcelery',
+    'text',
 )
 
 # APPEND_SLASH=False
@@ -111,3 +112,20 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # 设置静态文件存放的物理目录
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media') # 设置上传文件的保存目录
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+#发送邮件的邮箱
+EMAIL_HOST_USER = '15539183494@163.com'
+#在邮箱中设置的客户端授权密码
+EMAIL_HOST_PASSWORD = 'dayday123'
+#收件人看到的发件人
+EMAIL_FROM = 'TDSun<15539183494@163.com>'
+
+
+# 配置djcelery的代理和任务
+import djcelery
+djcelery.setup_loader()
+
+BROKER_URL = 'redis://127.0.0.1:6379/2'

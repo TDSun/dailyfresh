@@ -6,6 +6,6 @@ urlpatterns = [
     url(r'^use/login/$',views.login),
     url(r'^use/register/$',views.register),
     url(r'^use/register_verify/$',views.register_verify),
-
+    url(r'^use/verify/(\w+)/$',views.verify_username),
 
 ]

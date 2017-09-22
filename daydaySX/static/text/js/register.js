@@ -9,7 +9,6 @@ $(function(){
 
 	$('#user_name').blur(function() {
 		check_user_name();
-		user_name_vrify();
 	});
 
 	$('#pwd').blur(function() {
@@ -36,13 +35,7 @@ $(function(){
 			$(this).siblings('span').html('请勾选同意');
 			$(this).siblings('span').show();
 		}
-	});
-
-	function user_name_vrify() {
-		$.get('/usr/vrify/',function (data) {
-			
-        })
-    }
+	})
 
 	function check_user_name(){
 		var len = $('#user_name').val().length;
@@ -54,6 +47,17 @@ $(function(){
 		}
 		else
 		{
+            $.get('/use/verify/'+$('#user_name').val()+'/',function (data) {
+                if (data.user == 'no') {
+                    $('#user_name').next().html('用户名已存在')
+                    $('#user_name').next().show();
+                    error_name = true;
+                }
+                else {
+                    $('#user_name').next().hide();
+                    error_name = false;
+                }
+            })
 			$('#user_name').next().hide();
 			error_name = false;
 		}
@@ -117,8 +121,11 @@ $(function(){
 		check_cpwd();
 		check_email();
 
+
 		if(error_name == false && error_password == false && error_check_password == false && error_email == false && error_check == false)
 		{
+			var pwd = hex_sha1($('#pwd').val())
+			$('#pwd').val(pwd)
 			return true;
 		}
 		else

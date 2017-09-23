@@ -9,7 +9,7 @@ $(function(){
 
 	$('#user_name').blur(function() {
 		check_user_name();
-		username_exist(true)
+
 	});
 
 	$('#pwd').blur(function() {
@@ -48,6 +48,7 @@ $(function(){
 		}
 		else
 		{
+			username_exist(true)
 			$('#user_name').next().hide();
 			error_name = false;
 		}
@@ -131,8 +132,8 @@ $(function(){
 
 		if(error_name == false && error_password == false && error_check_password == false && error_email == false && error_check == false)
 		{
-			var pwd = hex_sha1($('#pwd').val())
-			$('#pwd').val(pwd)
+			// var pwd = hex_sha1($('#pwd').val())
+			// $('#pwd').val(pwd)
 			return true;
 		}
 		else

@@ -22,7 +22,7 @@ def register(request):
 # 注册校验
 def register_verify(request):
     Passport.objects.add_one_passport(request.POST.get('user_name'),request.POST.get('pwd'),request.POST.get('email'))
-    tasks.my_send_email('欢迎信息','',settings.EMAIL_FROM,[request.POST.get('email')],'<h1>你好我是TDSun</h1>')
+    tasks.my_send_email.delay('欢迎信息','',settings.EMAIL_FROM,[request.POST.get('email')],'<h1>你好我是TDSun</h1>')
     return redirect('/use/login/')
 
 # 用户名校验

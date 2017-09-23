@@ -1,10 +1,13 @@
 from django.db import models
 from db.base_model import BaseModle
 # Create your models here.
+from utlis.get_has import hex_has
+
 
 class PassportManager(models.Manager):
 
     def add_one_passport(self,username,password,email):
+        password = hex_has(password)
         passport = self.model(username=username,password=password,email=email)
         passport.save()
         return passport

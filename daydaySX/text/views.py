@@ -13,7 +13,16 @@ def index(request):
 
 #登陆
 def login(request):
-    return render(request,'text/login.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        res = Passport.objects.verify(username,password=password)
+        if res:
+            return JsonResponse({'res':'yes'})
+        else:
+            return JsonResponse({'res':'no'})
+    else:
+        return render(request,'text/login.html')
 
 #注册
 def register(request):
@@ -27,7 +36,7 @@ def register_verify(request):
 
 # 用户名校验
 def verify_username(request,name):
-    user = Passport.objects.verify_username(name)
+    user = Passport.objects.verify(name)
     return JsonResponse({'user':user})
 
 #购物车

@@ -12,12 +12,16 @@ class PassportManager(models.Manager):
         passport.save()
         return passport
 
-    def verify_username(self,name):
+    def verify(self,name,password=None):
         try:
-            Passport.objects.get(username=name)
-            return 'no'
+            if password:
+                obj = self.get(username=name,password=hex_has(password))
+            else:
+                obj = self.get(username=name)
         except Exception:
-            return 'yes'
+            obj = None
+        return obj
+
 
 
 

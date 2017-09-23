@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'daydaySX.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'daily_fresh',
+        'NAME': 'dailyfresh',
         'USER':'root',
         'PASSWORD':'1',
         'HOST':'localhost',

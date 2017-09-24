@@ -9,7 +9,7 @@ from text import tasks
 
 # 首页
 def index(request):
-    return render(request,'text/index.html')
+    return render(request, 'text/index.html')
 
 #登陆
 def login(request):
@@ -40,7 +40,7 @@ def verify_username(request,name):
     return JsonResponse({'user':user})
 
 #购物车
-def cart(request):
+def car(request):
     return render(request,'text/cart.html')
 
 def detail(request):

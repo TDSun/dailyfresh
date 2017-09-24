@@ -55,7 +55,7 @@ $(function(){
 	}
 	function username_exist(async) {
 		$.ajax({
-			'url':'/use/verify/'+$('#user_name').val()+'/',
+			'url':'/verify/'+$('#user_name').val()+'/',
 			'async':async,
 			'success':function (data) {
                 if (data.user == 'no') {

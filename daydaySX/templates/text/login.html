@@ -1,12 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>天天生鲜-登录</title>
-	<link rel="stylesheet" type="text/css" href="../../static/text/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../../static/text/css/main.css">
-    <script src="../../static/text/js/jquery-1.12.4.min.js"></script>
+{% block title %}天天生鲜-登录{% endblock title %}
+
+{% block head_js %}
+    <script src="{% static 'text/js/jquery-1.12.4.min.js' %}"></script>
     <script>
         $(function () {
             $('#submit').click(function () {
@@ -16,21 +14,24 @@
                 remember = $('input[name="remember"]').is(':checked')
                 params = {'username':username,'password':password,
                     'csrfmiddlewaretoken':csrf,'remember':remember}
-                $.post('/use/login/',params,function (data) {
+                $.post('/login/',params,function (data) {
                     if(data.res == 'no'){
                         $('#username').next().show().text('用户名或密码有误')
                     }else {
-                        location.href = '/use/index/';
+                        location.href = '/';
                     }
                 })
 
             })
         })
     </script>
-</head>
-<body>
+{% endblock head_js %}
+
+{% block header %}{% endblock header %}
+
+{% block body %}
 	<div class="login_top clearfix">
-		<a href="index.html" class="login_logo"><img src="../../static/text/images/logo02.png"></a>
+		<a href="/" class="login_logo"><img src="{% static 'text/images/logo02.png' %}"></a>
 	</div>
 
 	<div class="login_form_bg">
@@ -40,7 +41,7 @@
 			<div class="login_form fr">
 				<div class="login_title clearfix">
 					<h1>用户登录</h1>
-					<a href="/use/register/">立即注册</a>
+					<a href="/register/">立即注册</a>
 				</div>
 				<div class="form_input">
 					<form>
@@ -60,20 +61,5 @@
 			</div>
 		</div>
 	</div>
+{% endblock body %}
 
-	<div class="footer no-mp">
-		<div class="foot_link">
-			<a href="#">关于我们</a>
-			<span>|</span>
-			<a href="#">联系我们</a>
-			<span>|</span>
-			<a href="#">招聘人才</a>
-			<span>|</span>
-			<a href="#">友情链接</a>		
-		</div>
-		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
-		<p>电话：010-****888    京ICP备*******8号</p>
-	</div>
-	
-</body>
-</html>

@@ -18,7 +18,12 @@
                     if(data.res == 'no'){
                         $('#username').next().show().text('用户名或密码有误')
                     }else {
-                        location.href = '/';
+                        if(data.path){
+                            location.href = data.path
+                        }
+                        else{
+                            location.href = '/';
+                        }
                     }
                 })
 
@@ -46,12 +51,12 @@
 				<div class="form_input">
 					<form>
                         {% csrf_token %}
-						<input type="text" id="username" class="name_input" placeholder="请输入用户名">
+						<input type="text" id="username" value="{{ username }}" class="name_input" placeholder="请输入用户名">
 						<div class="user_error">输入错误</div>
 						<input type="password" id="pwd" class="pass_input" placeholder="请输入密码">
 						<div class="pwd_error">输入错误</div>
 						<div class="more_input clearfix">
-							<input type="checkbox" name="">
+							<input type="checkbox" name="remember">
 							<label>记住用户名</label>
 							<a href="#">忘记密码</a>
 						</div>

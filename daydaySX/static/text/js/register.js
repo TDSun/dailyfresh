@@ -58,7 +58,7 @@ $(function(){
 			'url':'/verify/'+$('#user_name').val()+'/',
 			'async':async,
 			'success':function (data) {
-                if (data.user == 'no') {
+                if (data.user == 1) {
                     $('#user_name').next().html('用户名已存在')
                     $('#user_name').next().show();
                     error_name = true;

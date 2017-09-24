@@ -15,9 +15,9 @@ class PassportManager(models.Manager):
     def verify(self,name,password=None):
         try:
             if password:
-                obj = self.get(username=name,password=hex_has(password))
+              obj = self.get(username=name,password=hex_has(password))
             else:
-                obj = self.get(username=name)
+              obj = self.get(username=name)
         except Exception:
             obj = None
         return obj

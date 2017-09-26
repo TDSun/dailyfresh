@@ -13,3 +13,10 @@ class Basemanager(models.Manager):
         except Exception:
             obj = None
         return obj
+
+    def get_filter_moder(self,goods_type_id={},order_by=()):
+        try:
+            obj = self.filter(**goods_type_id).order_by(*order_by)
+        except Exception:
+            obj = None
+        return obj

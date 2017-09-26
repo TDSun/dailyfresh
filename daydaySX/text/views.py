@@ -8,11 +8,6 @@ from utlis.decorators import is_login
 
 # Create your views here.
 
-# 首页
-def index(request):
-    dic = {'username': ''}
-    return render(request, 'text/index.html')
-
 
 # 登陆
 def login(request):
@@ -48,7 +43,7 @@ def login(request):
 @is_login
 def logout(request):
     request.session.flush()
-    return redirect('/')
+    return redirect('/goods/')
 
 
 # 注册
@@ -72,25 +67,6 @@ def verify_username(request, name):
         user = 0
     return JsonResponse({'user': user})
 
-
-# 购物车
-@is_login
-def car(request):
-    return render(request, 'text/cart.html')
-
-
-@is_login
-def detail(request):
-    return render(request, 'text/detail.html')
-
-
-def list(request):
-    return render(request, 'text/list.html')
-
-
-@is_login
-def place_order(request):
-    return render(request, 'text/place_order.html')
 
 
 # 用户中心

@@ -2,7 +2,6 @@ from django.conf.urls import url
 from text import views
 
 urlpatterns = [
-    url(r'^$',views.index),
 
     url(r'^login/$',views.login),
     url(r'^logout/$',views.logout),
@@ -15,12 +14,5 @@ urlpatterns = [
     url(r'^use/order/$',views.user_center_order),
     url(r'^use/site/$',views.user_center_site),
 
-    url(r'^car/$',views.car),
-
-    url(r'^list/$',views.list),
-
-    url(r'^detail/$',views.detail),
-
-    url(r'^order/$',views.place_order),
 
 ]

@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djcelery',
+    'db_goods',
     'text',
 )
 
@@ -125,3 +126,9 @@ import djcelery
 djcelery.setup_loader()
 
 BROKER_URL = 'redis://127.0.0.1:6379/2'
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 600,
+    'height': 400,
+}
